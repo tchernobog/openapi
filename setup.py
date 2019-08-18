@@ -33,12 +33,8 @@ setup(
         'sphinxcontrib-httpdomain >= 1.5.0',
         'PyYAML >= 3.12',
         'jsonschema >= 2.5.1',
+        'm2r >= 0.2',
     ],
-    extras_require={
-        'markdown': [
-            'm2r',
-        ],
-    },
     classifiers=[
         'Topic :: Documentation',
         'License :: OSI Approved :: BSD License',
