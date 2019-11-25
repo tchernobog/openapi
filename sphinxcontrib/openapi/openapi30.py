@@ -11,7 +11,13 @@
 from __future__ import unicode_literals
 
 import copy
-import collections
+
+try:
+    import collections.abc
+except ImportError:
+    import collections
+    collections.abc = collections
+
 from datetime import datetime
 import itertools
 import json
@@ -69,9 +75,9 @@ def _dict_merge(dct, merge_dct):
         dct: dict onto which the merge is executed
         merge_dct: dct merged into dct
     """
-    for k, v in merge_dct.items():
+    for k in merge_dct.keys():
         if (k in dct and isinstance(dct[k], dict)
-                and isinstance(merge_dct[k], collections.Mapping)):
+                and isinstance(merge_dct[k], collections.abc.Mapping)):
             _dict_merge(dct[k], merge_dct[k])
         else:
             dct[k] = merge_dct[k]
