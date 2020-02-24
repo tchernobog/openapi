@@ -179,10 +179,11 @@ def _example(media_type_objects, method=None, endpoint=None, status=None,
         if examples is None:
             examples = {}
             if not example:
-                if content_type != 'application/json':
-                    LOG.info('skipping non-JSON example generation.')
-                    continue
-                example = _parse_schema(content['schema'], method=method)
+                if content_type == 'application/json':
+                    example = _parse_schema(content['schema'], method=method)
+                else:
+                    print(content['schema'])
+                    example = content['schema']['example']
 
             if method is None:
                 examples['Example response'] = {
